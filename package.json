@@ -1,0 +1,13 @@
+{
+  "name": "couchbox-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix apps/tv-ui install && npm --prefix apps/remote-pwa install",
+    "build:remote": "npm --prefix apps/remote-pwa run build",
+    "build:tv": "npm --prefix apps/tv-ui run build",
+    "build": "npm run build:remote && npm run build:tv",
+    "dev:tv": "npm --prefix apps/tv-ui run dev",
+    "dev:remote": "npm --prefix apps/remote-pwa run dev"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "CouchBox Remote",
+  "short_name": "CouchBox",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090B10",
+  "theme_color": "#090B10",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
