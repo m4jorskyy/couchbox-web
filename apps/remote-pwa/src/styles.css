@@ -171,14 +171,17 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .dpad-ring {
   position: relative;
-  width: min(264px, 70vw);
-  height: min(264px, 70vw);
+  width: clamp(164px, min(62vw, 31dvh), 252px);
+  height: clamp(164px, min(62vw, 31dvh), 252px);
+  flex-shrink: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 40%, #1c2230, #121620);
   border: 1px solid rgba(245, 247, 250, 0.1);
@@ -188,8 +191,8 @@ button {
 
 .dpad-dir {
   position: absolute;
-  width: 76px;
-  height: 76px;
+  width: 30%;
+  height: 30%;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -205,7 +208,7 @@ button {
 }
 
 .dpad-up {
-  top: 6px;
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -214,7 +217,7 @@ button {
 }
 
 .dpad-down {
-  bottom: 6px;
+  bottom: 2%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -223,7 +226,7 @@ button {
 }
 
 .dpad-left {
-  left: 6px;
+  left: 2%;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -232,7 +235,7 @@ button {
 }
 
 .dpad-right {
-  right: 6px;
+  right: 2%;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -245,12 +248,12 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 96px;
-  height: 96px;
+  width: 36%;
+  height: 36%;
   border-radius: 50%;
   background: var(--text);
   color: var(--bg);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   transition: transform 0.08s ease;
@@ -635,4 +638,71 @@ button {
   border-radius: 12px;
   padding: 10px 14px;
   font-size: 14px;
+}
+
+/* Compact phones (iPhone 8 / SE / small viewports) */
+@media (max-height: 700px) {
+  .remote-shell {
+    padding: calc(8px + env(safe-area-inset-top)) 14px
+      calc(10px + env(safe-area-inset-bottom));
+    gap: 8px;
+  }
+
+  .icon-pill {
+    height: 34px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .status-pill {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .mode-tab {
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .dpad-wrap {
+    gap: 10px;
+  }
+
+  .dpad-ring {
+    width: clamp(152px, min(54vw, 28dvh), 205px);
+    height: clamp(152px, min(54vw, 28dvh), 205px);
+  }
+
+  .sub-btn {
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .trackpad-surface {
+    min-height: 120px;
+  }
+
+  .trackpad-nav-btn {
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .click-btn {
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .keyboard-cta {
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .media-deck {
+    gap: 6px;
+  }
+
+  .deck-btn {
+    height: 42px;
+    font-size: 12px;
+  }
 }
