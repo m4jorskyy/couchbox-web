@@ -679,6 +679,9 @@ export default function App() {
                 value={textValue}
                 onChange={(e) => setTextValue(e.target.value)}
                 autoComplete="off"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
               />
               <button className="send-btn" type="submit">
                 <Send size={17} />
