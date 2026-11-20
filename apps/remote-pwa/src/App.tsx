@@ -23,7 +23,7 @@ import {
   VolumeX,
   X,
 } from "lucide-react";
-import type { RemoteMessage, TvSnapshot } from "./types";
+import type { RemoteMessage, RemoteSync } from "./types";
 
 const TOKEN_STORAGE_KEY = "couchbox_device_token";
 
@@ -44,7 +44,7 @@ export default function App() {
   const [wsStatus, setWsStatus] = useState<"connecting" | "connected" | "offline">(
     "offline"
   );
-  const [snapshot, setSnapshot] = useState<TvSnapshot | null>(null);
+  const [remoteState, setRemoteState] = useState<RemoteSync | null>(null);
   const [mode, setMode] = useState<"dpad" | "trackpad">("dpad");
 
   const [sheet, setSheet] = useState<"none" | "keyboard" | "apps" | "power">("none");
@@ -107,8 +107,8 @@ export default function App() {
       const data = await res.json();
       localStorage.setItem(TOKEN_STORAGE_KEY, data.deviceToken);
       setDeviceToken(data.deviceToken);
-      if (data.snapshot) {
-        setSnapshot(data.snapshot);
+      if (data.state) {
+        setRemoteState(data.state);
       }
       if (window.location.search.includes("pair=")) {
         window.history.replaceState({}, "", "/");
@@ -151,8 +151,8 @@ export default function App() {
       ws.onmessage = (ev) => {
         try {
           const data = JSON.parse(ev.data);
-          if (data.type === "state_sync" && data.snapshot) {
-            setSnapshot(data.snapshot);
+          if (data.type === "state_sync" && data.state) {
+            setRemoteState(data.state);
           }
         } catch {
           // ignore malformed messages
@@ -355,7 +355,7 @@ export default function App() {
     );
   }
 
-  const activeName = snapshot?.activeAppName || "Home";
+  const activeName = remoteState?.activeAppName || "Home";
 
   return (
     <div className="remote-shell">
@@ -771,7 +771,7 @@ export default function App() {
             </div>
 
             <div className="app-list">
-              {(snapshot?.apps || []).map((app) => (
+              {(remoteState?.apps || []).map((app) => (
                 <button
                   key={app.id}
                   className="app-row"
