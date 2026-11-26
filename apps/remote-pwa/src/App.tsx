@@ -258,7 +258,7 @@ export default function App() {
 
     if (e.touches.length >= 2) {
       st.fingers = 2;
-      st.pendingScrollY += rawDy * 0.16;
+      st.pendingScrollY += rawDy * 0.28;
     } else {
       // Gentle speed acceleration for comfortable 1080p/4K traversal
       const speed = Math.hypot(rawDx, rawDy);
